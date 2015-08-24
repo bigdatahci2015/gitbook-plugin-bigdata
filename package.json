@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "engines": {
-     "gitbook": "*"
+    "gitbook": "*"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/bigdatahci2015/gitbook-plugin-bigdata/issues"
   },
-  "homepage": "https://github.com/bigdatahci2015/gitbook-plugin-bigdata"
+  "homepage": "https://github.com/bigdatahci2015/gitbook-plugin-bigdata",
+  "dependencies": {
+    "lodash": "^3.10.1"
+  }
 }
