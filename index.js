@@ -1,4 +1,4 @@
-var loadsh = require('lodash')
+var lodash = require('lodash')
 
 module.exports = {
     blocks: {
