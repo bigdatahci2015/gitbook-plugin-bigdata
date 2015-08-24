@@ -1,3 +1,5 @@
+var loadsh = require('lodash')
+
 module.exports = {
     blocks: {
             svg: {
@@ -24,6 +26,6 @@ module.exports = {
                 process: function(blk){
                     return '<pre>' + blk.body + '</pre>'
                 }
-            }            
+            }
     }
 }
