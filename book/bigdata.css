@@ -1,0 +1,12 @@
+.console {
+    font-size: 80%;
+}
+
+.error {
+    padding: 5px;
+    font-size: 12px;
+    line-height: normal;
+    font-family: monospace;
+    white-space: pre;
+    background-color: lightcoral;
+}
