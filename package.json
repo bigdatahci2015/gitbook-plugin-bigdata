@@ -1,7 +1,7 @@
 {
   "name": "gitbook-plugin-bigdata",
   "version": "1.1.0",
-  "description": "",
+  "description": "pluging for the big data hci course",
   "main": "index.js",
   "engines": {
     "gitbook": "*"
@@ -13,7 +13,7 @@
     "type": "git",
     "url": "https://github.com/bigdatahci2015/gitbook-plugin-bigdata.git"
   },
-  "author": "",
+  "author": "Tom Yeh tom.yeh@colorado.edu",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/bigdatahci2015/gitbook-plugin-bigdata/issues"
