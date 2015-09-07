@@ -17,7 +17,7 @@ module.exports = {
     filters: {
         // Author will be able to write "{{ 'test'|myFilter }}"
         json: function(s) {
-            return '<pre>' + JSON.stringify(s,null,' ') + '</pre>'
+            return '<pre style="font-size:11px;line-height:1;max-height:300px;">' + JSON.stringify(s,null,' ') + '</pre>'
         }
     },
     blocks: {
@@ -34,12 +34,12 @@ module.exports = {
                     var txt = ''
                     var myconsole = {
                         log: function(o){
-                            console.log(o)
+                            // console.log(o)
                             txt = txt + 'console> ' + JSON.stringify(o)
                             txt += '\n'
                         },
                         debug: function(o){
-                            console.debug(o)
+                            // console.debug(o)
                             txt = txt + 'debug> ' + JSON.stringify(o)
                             txt += '\n'
                         }
@@ -68,6 +68,7 @@ module.exports = {
 
                 }
             },
+            githubapi: require('./githubapi'),
             lodashexercise: {
                 blocks: ["data","output","solution","title"],
                 process: function(blk) {
@@ -129,13 +130,7 @@ module.exports = {
             },
             json: {
                 process: function(blk){
-                    // console.log(blk.body)
-
-                    // var f = new Function('data', '_', blk.body)
-                    // f.call(this, this.ctx.data, lodash)
-                    // console.log(this.ctx.data)
-                    // console.log(this.ctx.data.comments)
-                    return '<pre>' + JSON.stringify(blk.body) + '</pre>'
+                    return '<pre class="json"">' + JSON.stringify(blk.body) + '</pre>'
                 }
             }
     }

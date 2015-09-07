@@ -1,0 +1,33 @@
+h2= codes.title
+div.lodashexercise    
+    div.result
+    if match
+        .ok Done
+
+    .section-title Data
+    pre
+        = codes.data
+
+    div.output
+        div.left
+            .section-title Expected Output
+                pre
+                    != JSON.stringify(ctx.output,null,'  ')
+
+        div.right
+            .section-title Actual Output
+                pre
+                    != JSON.stringify(ret,null,'  ')
+        
+    .section-title Solution
+    pre
+        != hl(codes.solution)    
+            
+    if txt
+        div.console            
+            != txt
+    if error        
+        div.console.error
+            = error.stack
+
+    

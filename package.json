@@ -1,6 +1,6 @@
 {
   "name": "gitbook-plugin-bigdata",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "pluging for the big data hci course",
   "main": "index.js",
   "engines": {

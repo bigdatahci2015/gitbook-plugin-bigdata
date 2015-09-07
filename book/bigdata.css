@@ -1,3 +1,8 @@
+.json {
+    max-height: 300px;
+    overflow: auto;
+}
+
 .console {
     font-size: 80%;
     background-color: black;
@@ -47,4 +52,19 @@
     height: 100%;
     vertical-align:top;
     display: inline-block;
+}
+
+
+.githubapi .response {
+    max-height: 300px;
+    overflow:auto;
+    font-size: 11px;
+    line-height: 1;
+    font-family: monospace;
+    white-space: pre;
+}
+
+.githubapi .message{
+    font-weight:bold;
+    color: skyblue;
 }
