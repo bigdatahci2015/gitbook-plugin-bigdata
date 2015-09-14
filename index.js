@@ -4,6 +4,7 @@ var _ = require('lodash')
 var chai = require('chai')
 var assert = require('chai').assert
 var jade = require('jade')
+var path = require('path')
 
 module.exports = {
     website: {
@@ -17,7 +18,7 @@ module.exports = {
     filters: {
         // Author will be able to write "{{ 'test'|myFilter }}"
         json: function(s) {
-            return '<pre style="font-size:11px;line-height:1;max-height:300px;">' + JSON.stringify(s,null,' ') + '</pre>'
+            return '<pre style="font-size:11px;line-height:1;max-height:300px;">' + JSON.stringify(s,null,' ').slice(0,5000) + '</pre>'
         }
     },
     blocks: {
@@ -35,12 +36,12 @@ module.exports = {
                     var myconsole = {
                         log: function(o){
                             // console.log(o)
-                            txt = txt + 'console> ' + JSON.stringify(o)
+                            txt = txt + 'console> ' + JSON.stringify(o,null,' ').slice(0,5000)
                             txt += '\n'
                         },
                         debug: function(o){
                             // console.debug(o)
-                            txt = txt + 'debug> ' + JSON.stringify(o)
+                            txt = txt + 'debug> ' + JSON.stringify(o,null,' ').slice(0,5000)
                             txt += '\n'
                         }
                     }
@@ -61,7 +62,7 @@ module.exports = {
 
                     var html = '<pre>' + hl(blk.body) + '</pre>'
                     if (txt)
-                        html = html + '<div class="console"><pre>' + txt + '</pre></div>'
+                        html = html + '<div class="console">' + txt + '</div>'
                     if (error)
                         html = html + '<div class="console error">' + error.stack + '</div>'
                     return html
@@ -69,6 +70,13 @@ module.exports = {
                 }
             },
             githubapi: require('./githubapi'),
+            data: {
+                process: function(blk){
+                    src = path.resolve(path.dirname(this.ctx.file.path),blk.kwargs.src)
+                    this.ctx.data = require(src)
+                    return ''
+                }
+            },
             lodashexercise: {
                 blocks: ["data","output","solution","title"],
                 process: function(blk) {

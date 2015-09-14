@@ -1,0 +1,7 @@
+div.githubapi        
+    if error
+        .error
+            | failed to download data from #{url}
+            !{JSON.stringify(error,null,' ')}
+    else
+        .message Data is loaded from #{url}

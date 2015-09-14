@@ -4,10 +4,15 @@
 }
 
 .console {
-    font-size: 80%;
     background-color: black;
     color: white;
     padding-left: 4px;
+    max-height: 300px;
+    overflow:auto;
+    font-size: 11px;
+    line-height: 1;
+    font-family: monospace;
+    white-space: pre;
 }
 
 .error {
