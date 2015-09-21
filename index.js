@@ -11,7 +11,12 @@ module.exports = {
       assets: "./book",
       css: [
         "highlight.css",
-        "bigdata.css"
+        "bigdata.css",
+        "http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/styles/default.min.css"
+      ],
+      js: [
+          "bigdata.js",
+          "http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/highlight.min.js"
       ]
     },
     // Extend templating filters
@@ -19,9 +24,23 @@ module.exports = {
         // Author will be able to write "{{ 'test'|myFilter }}"
         json: function(s) {
             return '<pre style="font-size:11px;line-height:1;max-height:300px;">' + JSON.stringify(s,null,' ').slice(0,5000) + '</pre>'
+        },
+        svg: function(s) {
+            return  '<div style="border:1px solid grey; padding:5px;">' +
+                        '<svg height="500" width="800">' + s + '</svg>' +
+                        '<pre><code>\n' + _.escape(s) + '\n</code></pre>' +
+                    '</div>'
         }
     },
     blocks: {
+            template: {
+                process: function(blk){
+                    this.ctx.template = this.ctx.template || {}
+                    var name = blk.kwargs.name
+                    this.ctx.template[name] = blk.body
+                    return '<h4>template.' + name + '</h4> <pre><code>' + _.escape(blk.body.trim()) + '</code></pre>'
+                }
+            },
             svg: {
                 process: function(blk){
                     return '<svg height="300" width="500">'
@@ -32,11 +51,18 @@ module.exports = {
             lodash: {
                 process: function(blk){
 
+                    if (this.ctx.template){
+                        console.log(this.ctx.template)
+                    }
+                    //console.log(this.ctx.template.foo)
+
                     var txt = ''
                     var myconsole = {
                         log: function(o){
-                            // console.log(o)
-                            txt = txt + 'console> ' + JSON.stringify(o,null,' ').slice(0,5000)
+                            console.log('json',JSON.stringify(o,null,' '))
+                            var output = JSON.stringify(o,null,' ').slice(0,5000)
+                            output = _.escape(output)
+                            txt = txt + 'console> ' + output
                             txt += '\n'
                         },
                         debug: function(o){
@@ -46,11 +72,11 @@ module.exports = {
                         }
                     }
 
-                    var f = new Function('data', '_', 'console', blk.body)
+                    var f = new Function('data', '_', 'console', 'template', blk.body)
 
                     var error
                     try {
-                        var ret = f.call(this, this.ctx.data, lodash, myconsole)
+                        var ret = f.call(this, this.ctx.data, lodash, myconsole, this.ctx.template)
                         this.ctx.result = ret
 
 
@@ -60,7 +86,7 @@ module.exports = {
                         error = err
                     }
 
-                    var html = '<pre>' + hl(blk.body) + '</pre>'
+                    var html = '<pre><code>' + blk.body.trim() + '</code></pre>'
                     if (txt)
                         html = html + '<div class="console">' + txt + '</div>'
                     if (error)
@@ -140,6 +166,7 @@ module.exports = {
                 process: function(blk){
                     return '<pre class="json"">' + JSON.stringify(blk.body) + '</pre>'
                 }
-            }
+            },
+            vizexercise: require('./vizexercise')
     }
 }
