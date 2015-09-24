@@ -12,11 +12,13 @@ module.exports = {
       css: [
         "highlight.css",
         "bigdata.css",
+        "jquery.jsonview.css",
         "http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/styles/default.min.css"
       ],
       js: [
           "bigdata.js",
-          "http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/highlight.min.js"
+          "http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/highlight.min.js",
+          "jquery.jsonview.js"
       ]
     },
     // Extend templating filters
@@ -52,14 +54,13 @@ module.exports = {
                 process: function(blk){
 
                     if (this.ctx.template){
-                        console.log(this.ctx.template)
+                        //console.log(this.ctx.template)
                     }
                     //console.log(this.ctx.template.foo)
 
                     var txt = ''
                     var myconsole = {
                         log: function(o){
-                            console.log('json',JSON.stringify(o,null,' '))
                             var output = JSON.stringify(o,null,' ').slice(0,5000)
                             output = _.escape(output)
                             txt = txt + 'console> ' + output

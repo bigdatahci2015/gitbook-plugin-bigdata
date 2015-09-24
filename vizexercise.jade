@@ -1,0 +1,52 @@
+h2 
+    span.text= codes.title
+    a(href="#top", style="font-size: 14px; float: right;") [top]
+div.lodashexercise    
+    a(name="foo")    
+    .section-title Data        
+        span.inspect(style="font-size:10px;line-height:11px;")
+            span(style="visibility:hidden")
+                != JSON.stringify(ctx.data)
+
+    div.output
+        div.left
+            .section-title Desired Viz
+                svg(width="100%", height="400")
+                    != ctx.output
+
+        div.right
+            .section-title Actual Viz
+                svg(width="100%", height="400")
+                    != ret
+
+    div.output
+        div.left     
+            .section-title        
+                pre
+                    code
+                        = ctx.output
+
+        div.right   
+            .section-title                 
+                pre
+                    code
+                        = ret
+                        
+    .section-title Solution: SVG Template
+        pre
+            code
+                = codes.template
+
+    .section-title Solution: Javascript
+    pre
+        code
+            = codes.solution            
+    if inspects.length > 0
+        .section-title Console
+            each inspect in inspects            
+                div(style='border:1px solid #eee; margin-bottom: 5px;')
+                    span.inspect(style="font-size:10px;line-height:11px;")        
+                        != JSON.stringify(inspect)
+    if error        
+        div.console.error
+            = error.stack
