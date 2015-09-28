@@ -97,6 +97,7 @@ module.exports = {
                 }
             },
             githubapi: require('./githubapi'),
+            mongoquery: require('./mongoquery'),
             data: {
                 process: function(blk){
                     src = path.resolve(path.dirname(this.ctx.file.path),blk.kwargs.src)
