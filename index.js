@@ -168,6 +168,7 @@ module.exports = {
                     return '<pre class="json"">' + JSON.stringify(blk.body) + '</pre>'
                 }
             },
-            vizexercise: require('./vizexercise')
+            vizexercise: require('./vizexercise'),
+            viz: require('./viz')
     }
 }
