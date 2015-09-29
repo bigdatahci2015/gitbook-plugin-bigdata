@@ -19,10 +19,12 @@ module.exports = {
   process: function(blk) {
     var qstring = _.get(blk, "body", "").trim();
     console.log("Received query: " + qstring);
-    var query = JSON.parse(qstring);
+    var obj = JSON.parse("[" + qstring + "]");
+    var query = obj[0];
+    var projection = obj[1] || {};
     return using(connect(), function(db) {
-        return db.collection("listings")
-          .find(query)
+        return db.collection(collectionName)
+          .find(query, projection)
           .toArray();
       })
       .then(function(data) {
