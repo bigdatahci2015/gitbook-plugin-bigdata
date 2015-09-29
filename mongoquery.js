@@ -18,6 +18,10 @@ function connect() {
 module.exports = {
   process: function(blk) {
     var qstring = _.get(blk, "body", "").trim();
+    if(_.isEmpty(qstring)){
+      this.ctx.data = "";
+      return jade.renderFile(__dirname + "/mongoquery.jade", {code: qstring});
+    }
     console.log("Received query: " + qstring);
     var obj = JSON.parse("[" + qstring + "]");
     var query = obj[0];
