@@ -1,6 +1,6 @@
 {
   "name": "gitbook-plugin-bigdata",
-  "version": "1.9.0",
+  "version": "1.9.1",
   "description": "pluging for the big data hci course",
   "main": "index.js",
   "engines": {
@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/bigdatahci2015/gitbook-plugin-bigdata",
   "dependencies": {
-    "lodash": "^3.10.1"
+    "bluebird": "^2.10.1",
+    "lodash": "^3.10.1",
+    "mongodb": "^2.0.45"
   }
 }
