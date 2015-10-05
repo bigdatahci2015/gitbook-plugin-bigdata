@@ -170,6 +170,16 @@ module.exports = {
                 }
             },
             vizexercise: require('./vizexercise'),
-            viz: require('./viz')
+            viz: require('./viz'),
+            script: {
+                process: function(blk){
+                    var code = _.get(blk,'body','').trim()
+                    return '<pre><code>' + _.escape(code) + '</code></pre>' +
+                        // '\n<script>\n' +
+                        //     code + '\n</script>'
+                        '<script>' +
+                        'var code =' + JSON.stringify(code) + '</script>'
+                }
+            }
     }
 }

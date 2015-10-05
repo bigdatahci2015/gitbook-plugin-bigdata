@@ -19,6 +19,12 @@ require(["gitbook", "jQuery"], function(gitbook, $) {
 
       $('#autonav').html(autonavhtml)
 
+      try {
+          var f = new Function(code)
+        f.call()
+        }catch(e){
+            console.log(e)
+        }
   })
 
 })
