@@ -18,7 +18,8 @@ module.exports = {
       js: [
           "bigdata.js",
           "http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/highlight.min.js",
-          "jquery.jsonview.js"
+          "jquery.jsonview.js",
+          "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"
       ]
     },
     // Extend templating filters
